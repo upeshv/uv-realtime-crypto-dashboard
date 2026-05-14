@@ -30,22 +30,22 @@ By default, this block connects to the Binance WebSocket API to stream live cryp
 ## 📸 Screenshots
 
 #### 1. Live Dashboard Rendering (Default Bitcoin Stream)
-![Default view showing AreaChart visualization of Bitcoin trades](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-1.png)
+![Default view showing AreaChart visualization of Bitcoin trades](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-1.png)
 
 #### 2. Custom WebSocket Configuration
-![Block sidebar demonstrating the custom data stream input and settings](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-2.png)
+![Block sidebar demonstrating the custom data stream input and settings](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-2.png)
 
 #### 3. Active Custom Stream (Binance Coin)
-![Live block rendering data from a custom WebSocket endpoint](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-3.png)
+![Live block rendering data from a custom WebSocket endpoint](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-3.png)
 
 #### 4. CPU Performance Throttling Controls
-![Settings sidebar demonstrating controls to throttle chart refresh rate](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-4.png)
+![Settings sidebar demonstrating controls to throttle chart refresh rate](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-4.png)
 
 #### 5. Graceful Error Handling & Silent Failure Detection
-![UI demonstrating a connection error due to an incorrect stream name](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-5.png)
+![UI demonstrating a connection error due to an incorrect stream name](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-5.png)
 
 #### 6. CI/CD: Passing Jest Test Suite
-![Terminal output showing passing unit and integration tests](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/assets/screenshot-6.png)
+![Terminal output showing passing unit and integration tests](https://raw.githubusercontent.com/upeshv/react-realtime-performance-dashboard/main/assets/screenshot-6.png)
 
 ## 🔒 Security & Data Integrity
 
