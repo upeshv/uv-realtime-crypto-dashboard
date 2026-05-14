@@ -5,6 +5,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178c6.svg)
 ![React](https://img.shields.io/badge/React-18-61dafb.svg)
 ![Jest](https://img.shields.io/badge/Testing-Jest-99424f.svg)
+![A11y](https://img.shields.io/badge/A11y-WCAG%202.2%20AA-blueviolet.svg)
 ![License](https://img.shields.io/badge/license-GPLv2-green.svg)
 
 An enterprise-grade, high-performance Gutenberg block that bridges WordPress and WebSockets to render real-time data visualizations.
@@ -53,7 +54,7 @@ By default, this block connects to the Binance WebSocket API to stream live cryp
 * **Protocol Enforcement:** Utilizing strict WordPress escaping, the block only permits secure `wss://` and `ws://` protocols, preventing XSS injections.
 * **Zero Server-Side Execution:** Since no data is processed on the PHP server, the plugin eliminates backend vulnerabilities associated with API proxies.
 
-## ♿ Accessibility (WCAG 2.1)
+## ✨ Accessibility (WCAG 2.2)
 
 Inclusive design is a core requirement of this project:
 * **ARIA Live Regions:** Real-time price updates utilize `aria-live="polite"` regions to ensure screen readers announce value changes without interrupting the user's flow.

@@ -36,7 +36,7 @@ Data safety is maintained through a strictly decentralized architecture.
 * **Protocol Enforcement:** Utilizing strict WordPress escaping (`esc_url`), the block only permits secure `wss://` and `ws://` protocols, preventing XSS injections through malformed URLs.
 * **Zero Server-Side Execution:** Since no data is processed on your PHP server, the plugin eliminates common backend vulnerabilities associated with API proxies.
 
-== Accessibility (WCAG 2.1) ==
+== Accessibility (WCAG 2.2) ==
 
 Inclusive design is baked into the dashboard to ensure market data is perceptible to all visitors.
 * **ARIA Live Regions:** High-priority price updates utilize `aria-live="polite"` regions, allowing screen readers to announce value changes without interrupting the user's flow.
