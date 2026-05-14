@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "realtime-dashboard/performance-dashboard",
+  "version": "1.0.0",
+  "title": "React Realtime Dashboard",
+  "category": "widgets",
+  "icon": "chart-line",
+  "description": "A high-performance, real-time data visualization block bridging WordPress and WebSockets.",
+  "attributes": {
+    "dataStreamUrl": {
+      "type": "string",
+      "default": "wss://stream.binance.com:9443/ws/btcusdt@trade"
+    },
+    "chartTitle": {
+      "type": "string",
+      "default": "Live Market Performance"
+    },
+    "refreshRateMs": {
+      "type": "number",
+      "default": 1000
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "customClassName": true
+  },
+  "textdomain": "react-realtime-performance-dashboard",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

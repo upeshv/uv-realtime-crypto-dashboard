@@ -1,0 +1,35 @@
+{
+    "name": "react-realtime-performance-dashboard",
+    "version": "1.0.0",
+    "description": "A high-performance, real-time data visualization block bridging WordPress and WebSockets.",
+    "author": "Upesh Vishwakarma",
+    "license": "GPL-2.0-or-later",
+    "main": "build/index.js",
+    "scripts": {
+        "build": "wp-scripts build --webpack-copy-php",
+        "format": "wp-scripts format",
+        "lint:css": "wp-scripts lint-style",
+        "lint:js": "wp-scripts lint-js",
+        "packages-update": "wp-scripts packages-update",
+        "plugin-zip": "wp-scripts plugin-zip",
+        "start": "wp-scripts start --webpack-copy-php",
+        "test": "wp-scripts test-unit-js"
+    },
+    "dependencies": {
+        "recharts": "^3.8.1"
+    },
+    "devDependencies": {
+        "@testing-library/jest-dom": "^6.4.2",
+        "@testing-library/react": "^14.2.1",
+        "@types/jest": "^29.5.12",
+        "@types/wordpress__block-editor": "^11.5.0",
+        "@types/wordpress__blocks": "^12.5.0",
+        "@types/wordpress__components": "^23.8.0",
+        "@wordpress/block-editor": "^12.1.0",
+        "@wordpress/blocks": "^12.16.0",
+        "@wordpress/i18n": "^4.46.0",
+        "@wordpress/scripts": "^27.9.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0"
+    }
+}

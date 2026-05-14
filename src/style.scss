@@ -1,0 +1,150 @@
+/**
+ * Realtime Performance Dashboard Styles
+ * * Handles the frontend UI and editor block styling for the dashboard.
+ * - Flattened nesting (Max 2 levels).
+ * - CSS Variables for easy theming and dark mode support.
+ */
+
+ /* --- Accessibility Utility --- */
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+ .realtime-dashboard-architect-wrapper {
+	/* --- Theming Variables --- */
+	--rd-bg-color: #ffffff;
+	--rd-border-color: #e2e8f0;
+	--rd-text-main: #0f172a;
+	--rd-text-muted: #64748b;
+	--rd-text-light: #94a3b8;
+	--rd-text-loading: #cbd5e1;
+	
+	/* Brand & Status Colors */
+	--rd-color-primary: #3b82f6;
+	--rd-bg-primary-light: #eff6ff;
+	--rd-color-success: #16a34a;
+	--rd-color-danger: #dc2626;
+	
+	/* Badge Colors */
+	--rd-badge-connected-bg: #f0fdf4;
+	--rd-badge-connected-text: #166534;
+	--rd-badge-connecting-bg: #f8fafc;
+	--rd-badge-connecting-text: #475569;
+	--rd-badge-error-bg: #fef2f2;
+	--rd-badge-error-text: #991b1b;
+
+	/* --- Root Block Styles --- */
+	background: var(--rd-bg-color);
+	border: 1px solid var(--rd-border-color);
+	border-radius: 16px;
+	padding: 32px;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+	/* --- Flattened Component Styles --- */
+	.dashboard-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		border-bottom: 1px solid #f1f5f9;
+		padding-bottom: 24px;
+	}
+
+	.header-titles h2 {
+		margin: 0 0 4px 0;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: var(--rd-text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.coin-label {
+		display: block;
+		font-size: 0.85rem;
+		color: var(--rd-color-primary);
+		font-weight: 600;
+		margin-bottom: 12px;
+		background: var(--rd-bg-primary-light);
+		padding: 2px 8px;
+		border-radius: 4px;
+		width: max-content;
+	}
+
+	.kpi-price {
+		font-size: 2.75rem;
+		font-weight: 800;
+		color: var(--rd-text-main);
+		line-height: 1;
+		letter-spacing: -0.02em;
+		transition: color 0.3s ease;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		&.price-up { color: var(--rd-color-success); }
+		&.price-down { color: var(--rd-color-danger); }
+		&.loading {
+			color: var(--rd-text-loading);
+			font-size: 2rem;
+		}
+	}
+
+	.delta-icon {
+		font-size: 1.5rem;
+	}
+
+	.header-meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 8px;
+	}
+
+	.status-badge {
+		font-size: 0.8rem;
+		font-weight: 600;
+		padding: 6px 14px;
+		border-radius: 999px;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		
+		&.status-connected { 
+			background: var(--rd-badge-connected-bg); 
+			color: var(--rd-badge-connected-text); 
+		}
+		&.status-connecting { 
+			background: var(--rd-badge-connecting-bg); 
+			color: var(--rd-badge-connecting-text); 
+		}
+		&.status-error { 
+			background: var(--rd-badge-error-bg); 
+			color: var(--rd-badge-error-text); 
+		}
+	}
+
+	.refresh-note {
+		font-size: 0.75rem;
+		color: var(--rd-text-light);
+		font-weight: 500;
+	}
+
+	.error-card {
+		background: var(--rd-badge-error-bg);
+		border-left: 4px solid var(--rd-color-danger);
+		padding: 16px;
+		margin-top: 24px;
+		color: var(--rd-badge-error-text);
+		border-radius: 4px;
+	}
+}
