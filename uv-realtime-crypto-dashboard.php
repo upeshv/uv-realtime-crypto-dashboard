@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       UV Realtime Crypto Dashboard – Live Market Data
+ * Plugin Name:       UV Realtime Crypto Dashboard
  * Plugin URI:        https://github.com/upeshv/uv-realtime-crypto-dashboard/
  * Description:       A high-performance, real-time cryptocurrency data visualization block bridging WordPress and WebSockets.
  * Version:           1.0.0
