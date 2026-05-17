@@ -53,7 +53,8 @@ addFilter('uvRealtimeCryptoDashboard.refreshRateOptions', 'my-theme', (options) 
 ### 2. PHP Filters (Server-Side Defaults)
 Override global fallback settings via your themes `functions.php`:
 
-``` // Override the default global WebSocket stream
+``` 
+// Override the default global WebSocket stream
 add_filter('uv_realtime_crypto_dashboard_default_stream', function() {
     return 'wss://stream.binance.com:9443/ws/ethusdt@trade';
 });
