@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "realtime-dashboard/performance-dashboard",
+  "name": "vishwaupesh/uv-realtime-crypto-dashboard",
   "version": "1.0.0",
-  "title": "React Realtime Dashboard",
+  "title": "UV Realtime Crypto Dashboard",
   "category": "widgets",
   "icon": "chart-line",
-  "description": "A high-performance, real-time data visualization block bridging WordPress and WebSockets.",
+  "description": "A high-performance, real-time cryptocurrency data visualization block bridging WordPress and WebSockets.",
   "attributes": {
     "dataStreamUrl": {
       "type": "string",
@@ -14,7 +14,7 @@
     },
     "chartTitle": {
       "type": "string",
-      "default": "Live Market Performance"
+      "default": "Live Crypto Market"
     },
     "refreshRateMs": {
       "type": "number",
@@ -29,9 +29,8 @@
     ],
     "customClassName": true
   },
-  "textdomain": "react-realtime-performance-dashboard",
+  "textdomain": "uv-realtime-crypto-dashboard",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php",
   "viewScript": "file:./view.js"

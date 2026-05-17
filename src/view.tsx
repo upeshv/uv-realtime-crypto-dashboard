@@ -31,15 +31,15 @@ interface BinanceTradePayload {
  */
 const getStreamLabel = ( url: string ): string => {
 	if ( url.includes( 'btc' ) ) {
-		return __( 'Bitcoin (BTC/USDT)', 'react-realtime-performance-dashboard' );
+		return __( 'Bitcoin (BTC/USDT)', 'uv-realtime-crypto-dashboard' );
 	}
 	if ( url.includes( 'eth' ) ) {
-		return __( 'Ethereum (ETH/USDT)', 'react-realtime-performance-dashboard' );
+		return __( 'Ethereum (ETH/USDT)', 'uv-realtime-crypto-dashboard' );
 	}
 	if ( url.includes( 'sol' ) ) {
-		return __( 'Solana (SOL/USDT)', 'react-realtime-performance-dashboard' );
+		return __( 'Solana (SOL/USDT)', 'uv-realtime-crypto-dashboard' );
 	}
-	return __( 'Custom Stream', 'react-realtime-performance-dashboard' );
+	return __( 'Custom Stream', 'uv-realtime-crypto-dashboard' );
 };
 
 interface LiveDashboardProps {
@@ -84,7 +84,7 @@ function LiveDashboard( { streamUrl, title, refreshRate }: LiveDashboardProps ) 
 	};
 
 	const formatTooltipTime = ( label: any ) => formatTime( label );
-	const formatTooltipValue = ( value: any ): [ string, string ] => [ `$${ value }`, __( 'Price', 'react-realtime-performance-dashboard' ) ];
+	const formatTooltipValue = ( value: any ): [ string, string ] => [ `$${ value }`, __( 'Price', 'uv-realtime-crypto-dashboard' ) ];
 	const formatYAxis = ( val: any ) => `$${ parseFloat( val ).toLocaleString() }`;
 
 	const currentPrice = chartData.length > 0 ? chartData[ chartData.length - 1 ].price : null;
@@ -94,7 +94,7 @@ function LiveDashboard( { streamUrl, title, refreshRate }: LiveDashboardProps ) 
 	const isDown = currentPrice !== null && previousPrice !== null && currentPrice < previousPrice;
 
 	return (
-		<div className="realtime-dashboard-architect-wrapper">
+		<div className="uv-realtime-crypto-dashboard-wrapper">
 			<div className="dashboard-header">
 				<div className="header-titles">
 					<h2>{ title }</h2>
@@ -107,39 +107,39 @@ function LiveDashboard( { streamUrl, title, refreshRate }: LiveDashboardProps ) 
                             role="status"
                             aria-atomic="true"
 						>
-                            <span className="screen-reader-text">{ __( 'Current Price:', 'react-realtime-performance-dashboard' ) } </span>
+                            <span className="screen-reader-text">{ __( 'Current Price:', 'uv-realtime-crypto-dashboard' ) } </span>
 							${ currentPrice.toLocaleString( undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 } ) }
 							{ isUp && <span className="delta-icon" aria-hidden="true">▲</span> }
 							{ isDown && <span className="delta-icon" aria-hidden="true">▼</span> }
 						</div>
 					) : (
 						<div className="kpi-price loading" aria-live="polite">
-							{ __( 'Awaiting Data...', 'react-realtime-performance-dashboard' ) }
+							{ __( 'Awaiting Data...', 'uv-realtime-crypto-dashboard' ) }
 						</div>
 					) }
 				</div>
 
 				<div className="header-meta">
 					<div className={ `status-badge status-${ status }` }>
-						{ status === 'connecting' && <span>{ __( 'Connecting...', 'react-realtime-performance-dashboard' ) }</span> }
-						{ status === 'connected' && <span>🟢 { __( 'Live', 'react-realtime-performance-dashboard' ) }</span> }
-						{ status === 'disconnected' && <span>⚫ { __( 'Offline', 'react-realtime-performance-dashboard' ) }</span> }
-						{ status === 'error' && <span>🔴 { __( 'Error', 'react-realtime-performance-dashboard' ) }</span> }
+						{ status === 'connecting' && <span>{ __( 'Connecting...', 'uv-realtime-crypto-dashboard' ) }</span> }
+						{ status === 'connected' && <span>{ __( 'Live', 'uv-realtime-crypto-dashboard' ) }</span> }
+						{ status === 'disconnected' && <span>{ __( 'Offline', 'uv-realtime-crypto-dashboard' ) }</span> }
+						{ status === 'error' && <span>{ __( 'Error', 'uv-realtime-crypto-dashboard' ) }</span> }
 					</div>
 					<div className="refresh-note">
-						{ sprintf( __( 'Updates every %ss', 'react-realtime-performance-dashboard' ), refreshRate / 1000 ) }
+						{ sprintf( __( 'Updates every %ss', 'uv-realtime-crypto-dashboard' ), refreshRate / 1000 ) }
 					</div>
 				</div>
 			</div>
 
 			{ status === 'error' && (
 				<div className="error-card">
-					<p><strong>{ __( 'Connection Failed:', 'react-realtime-performance-dashboard' ) }</strong> { error }</p>
+					<p><strong>{ __( 'Connection Failed:', 'uv-realtime-crypto-dashboard' ) }</strong> { error }</p>
 				</div>
 			) }
 
 			{ status === 'connected' && (
-				<div className="chart-container" style={ { marginTop: '20px', height: 320, width: '100%' } }>
+				<div className="chart-container">
 					<ResponsiveContainer width="99%" height={ 320 }>
 						<AreaChart data={ chartData }>
 							<defs>
@@ -191,7 +191,7 @@ function LiveDashboard( { streamUrl, title, refreshRate }: LiveDashboardProps ) 
  * Initializes the React application when the DOM is fully loaded.
  */
 document.addEventListener( 'DOMContentLoaded', () => {
-	const wrappers = document.querySelectorAll( '.realtime-dashboard-frontend-root' );
+	const wrappers = document.querySelectorAll( '.uv-realtime-crypto-dashboard-frontend-root' );
 
 	wrappers.forEach( ( wrapper ) => {
 		// Performs a strict check to satisfy TypeScript safely.
@@ -200,7 +200,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		}
 
 		const streamUrl = wrapper.getAttribute( 'data-stream-url' ) || 'wss://stream.binance.com:9443/ws/btcusdt@trade';
-		const title = wrapper.getAttribute( 'data-title' ) || __( 'Live Market Performance', 'react-realtime-performance-dashboard' );
+		const title = wrapper.getAttribute( 'data-title' ) || __( 'Live Crypto Market', 'uv-realtime-crypto-dashboard' );
 		const refreshRate = parseInt( wrapper.getAttribute( 'data-refresh-rate' ) || '1000', 10 );
 
 		if ( streamUrl ) {

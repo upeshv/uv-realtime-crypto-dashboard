@@ -1,5 +1,5 @@
 {
-    "name": "react-realtime-performance-dashboard",
+    "name": "uv-realtime-crypto-dashboard",
     "version": "1.0.0",
     "description": "A high-performance, real-time data visualization block bridging WordPress and WebSockets.",
     "author": "Upesh Vishwakarma",
@@ -13,6 +13,7 @@
         "packages-update": "wp-scripts packages-update",
         "plugin-zip": "wp-scripts plugin-zip",
         "start": "wp-scripts start --webpack-copy-php",
+        "makepot": "wp-pot --src '*.php' --src 'src/**/*.{php,ts,tsx,js}' --dest-file 'languages/uv-realtime-crypto-dashboard.pot' --domain 'uv-realtime-crypto-dashboard'",
         "test": "wp-scripts test-unit-js"
     },
     "dependencies": {
@@ -30,6 +31,7 @@
         "@wordpress/i18n": "^4.46.0",
         "@wordpress/scripts": "^27.9.0",
         "react": "^18.2.0",
-        "react-dom": "^18.2.0"
+        "react-dom": "^18.2.0",
+        "wp-pot-cli": "^1.5.0"
     }
 }

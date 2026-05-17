@@ -1,6 +1,6 @@
-=== React Realtime Performance Dashboard ===
-Contributors:      upeshv
-Tags:              dashboard, realtime, websockets, crypto, blocks, chart
+=== UV Realtime Crypto Dashboard ===
+Contributors:      vishwaupesh
+Tags:              dashboard, websockets, crypto, blocks, bitcoin
 Requires at least: 6.2
 Tested up to:      6.9
 Requires PHP:      7.4
@@ -8,86 +8,116 @@ Stable tag:        1.0.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-A high-performance, real-time data visualization block bridging WordPress and WebSockets.
+Display live cryptocurrency market data directly on your WordPress site with this ultra-fast, zero-server-load Gutenberg block.
 
 == Description ==
 
-The React Realtime Performance Dashboard is an enterprise-grade Gutenberg block that allows you to embed live, self-updating data streams directly into your WordPress posts and pages. 
+The **UV Realtime Crypto Dashboard** is the easiest way to embed live, self-updating cryptocurrency charts directly into your WordPress posts and pages. 
 
-Built with React and Recharts, this block establishes a direct WebSocket connection on the client side, meaning you get millisecond-accurate data updates without putting any additional load on your WordPress server.
+Perfect for crypto bloggers, financial news sites, and trading portfolios, this block connects directly to live market data streams. Because it establishes a direct WebSocket connection on the visitor's browser, you get millisecond-accurate data updates without putting *any* additional load on your WordPress server.
 
-**Key Features:**
-* **Zero Server Load:** Connects directly to external WebSocket endpoints from the user's browser.
-* **Hardware Network Bridging:** Automatically detects network drops, kills "zombie" connections to save memory, and auto-heals when restored.
-* **Performance Throttling:** Controls to throttle React repaints (100ms to 3s) to save battery and CPU on mobile devices.
-* **Customizable:** Input any public wss:// data stream URL directly within the editor.
+= Why use UV Realtime Crypto Dashboard? =
 
-== Performance & Optimization ==
+* **Zero Server Load:** Your web server does zero work. The visitor's browser securely handles the live stream, keeping your website lightning fast.
+* **Free Live Data (No API Keys!):** By default, the block connects to the public Binance WebSocket API. It is 100% free and requires no authentication.
+* **Auto-Healing Hooks:** Built-in logic to detect when a user's computer wakes from sleep or changes Wi-Fi, automatically reconnecting the stream without a page refresh.
+* **No-Conflict Architecture:** Works alongside any theme or plugin. It doesn't use the WordPress database for price storage, ensuring zero database bloat.
+* **Mobile Optimized & Smart Throttling:** Built-in performance throttling saves battery life and CPU power for users viewing your charts on mobile devices.
+* **Accessible (WCAG 2.2):** Fully compatible with screen readers (using ARIA Live Regions) and respects "reduced motion" settings for visually sensitive users.
+* **Highly Customizable:** Easily change the chart title, adjust the refresh rate, or input any custom public `wss://` data stream URL directly within the WordPress editor.
 
-This plugin is engineered for high-traffic environments where frontend efficiency is critical.
-* **Client-Side Hydration:** The PHP renderer only serves the container and initial configuration, the heavy lifting of data processing is handled by the browser's JavaScript engine.
-* **Memory Management:** The custom `useRealTimeData` hook utilizes aggressive garbage collection, clearing all internal timeouts and closing socket listeners immediately when the block is unmounted.
-* **Repaint Throttling:** By using a `useRef` based timer, the dashboard prevents the "React Refresh Storm" common in real-time apps, ensuring 60fps UI smoothness even with high-frequency data.
+== For Developers ==
 
-== Security & Data Integrity ==
+Engineered for high-traffic environments, this plugin uses React and Recharts with strict memory management. It features automatic network drop detection, "zombie" connection killing, and auto-healing capabilities to ensure a flawless 60fps UI experience, even with high-frequency data.
 
-Data safety is maintained through a strictly decentralized architecture.
-* **Read-Only Pipeline:** The connection to WebSocket endpoints is 100% read-only. No user data, site credentials, or sensitive headers are ever transmitted to external servers.
-* **Protocol Enforcement:** Utilizing strict WordPress escaping (`esc_url`), the block only permits secure `wss://` and `ws://` protocols, preventing XSS injections through malformed URLs.
-* **Zero Server-Side Execution:** Since no data is processed on your PHP server, the plugin eliminates common backend vulnerabilities associated with API proxies.
+This plugin is built with extensibility in mind. It exposes both PHP hooks for server-side defaults and JavaScript hooks so theme developers can extend the Gutenberg block's UI controls.
 
-== Accessibility (WCAG 2.2) ==
+**PHP Filters (Server-Side Defaults)**
 
-Inclusive design is baked into the dashboard to ensure market data is perceptible to all visitors.
-* **ARIA Live Regions:** High-priority price updates utilize `aria-live="polite"` regions, allowing screen readers to announce value changes without interrupting the user's flow.
-* **Keyboard Navigation:** Every control, including custom URL inputs and refresh rate selectors, is fully navigable via Tab keys with high-visibility focus states.
-* **Motion Reduction:** The charting engine respects the `prefers-reduced-motion` system preference, disabling transitions for users with vestibular sensitivities.
+`add_filter( 'uv_realtime_crypto_dashboard_default_stream', function() { return 'wss://stream.binance.com:9443/ws/ethusdt@trade'; } );`
+Overrides the global fallback WebSocket data stream output on the frontend.
 
-== API & Legal Compliance ==
+`add_filter( 'uv_realtime_crypto_dashboard_default_refresh', function() { return 3000; } );`
+Overrides the global fallback refresh rate in milliseconds.
 
-By default, this block connects to the public Binance WebSocket API. This stream is **100% free, requires no authentication or API keys**, and has no CORS restrictions. 
+**JavaScript Filters (Editor UI Extensibility)**
 
-Because it operates as a public data pipeline, it is perfectly safe, legally compliant, and respects the open-source ethos of the WordPress community. No user data is ever sent to the endpoint, the connection is strictly read-only for public market data.
+You can easily extend the block's sidebar dropdowns by hooking into the React rendering cycle using `@wordpress/hooks` in your theme's admin JavaScript.
+
+`wp.hooks.addFilter( 'uvRealtimeCryptoDashboard.streamOptions', 'my-theme', function( options ) {
+    return [
+        ...options,
+        { label: 'Solana (SOL/USDT)', value: 'wss://stream.binance.com:9443/ws/solusdt@trade' },
+        { label: 'Cardano (ADA/USDT)', value: 'wss://stream.binance.com:9443/ws/adausdt@trade' }
+    ];
+} );`
+Appends new cryptocurrency pairs to the "Select Live Market" dropdown inside the block settings sidebar.
+
+`wp.hooks.addFilter( 'uvRealtimeCryptoDashboard.refreshRateOptions', 'my-theme', function( options ) {
+    return [
+        ...options,
+        { label: 'Ultra Slow (5000ms)', value: 5000 }
+    ];
+} );`
+Appends custom millisecond options to the "Chart Refresh Rate" dropdown.
 
 == Installation ==
 
-**From a compiled ZIP file:**
-1. Upload the plugin files to the `/wp-content/plugins/react-realtime-performance-dashboard` directory.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Open any page or post and add the "React Realtime Dashboard" block.
-
-**From Source (GitHub):**
-1. Clone the repository into your plugins directory.
-2. Run `npm install` and `npm run build`.
-3. Activate the plugin.
-
-== Testing & Quality Assurance ==
-
-This plugin is engineered with strict Test-Driven Development (TDD) principles. The test suite uses Jest and React Testing Library to simulate real-world browser events.
-
-**How to run the tests:**
-1. Navigate to the plugin directory.
-2. Run `npm run test`
+1. Log into your WordPress admin dashboard.
+2. Navigate to **Plugins > Add New Plugin**.
+3. Search for "UV Realtime Crypto Dashboard".
+4. Click **Install Now**, then click **Activate**.
+5. Open any page or post in the WordPress editor, type `/crypto`, and add the "Realtime Crypto Dashboard" block!
 
 == Frequently Asked Questions ==
 
-= Will this slow down my WordPress server? =
-No. The block uses client-side WebSockets. Your server only delivers the initial JS, the user's browser handles the live stream.
+= Will this slow down my WordPress website? =
+Not at all. The block uses client-side WebSockets. Your server only delivers the initial script, and the user's browser handles the live stream directly. It has zero impact on your Core Web Vitals or server CPU.
 
-= Can I use my own custom WebSocket data? =
-Yes. You can paste any public wss:// endpoint. Ensure your endpoint returns JSON with 'p' (price) and 'T' (timestamp) keys.
+= Do I need to create an account or get an API key? =
+No! The default stream uses a public, free endpoint. You can install the plugin and show live Bitcoin prices in seconds without signing up for anything.
+
+= Can I use my own custom WebSocket data stream? =
+Absolutely. You can paste any public `wss://` endpoint into the block settings. Just ensure your custom endpoint returns JSON with `p` (price) and `T` (timestamp) keys to render correctly on the chart.
+
+= Is it secure? =
+Yes. The data connection is 100% read-only. No user data, site credentials, or sensitive headers are ever transmitted. 
 
 == Screenshots ==
 
-1. Settings sidebar showing the refresh rate and performance throttling options.
-2. The live dashboard view rendering Bitcoin (BTC/USDT) real-time data.
-3. Example of a custom WebSocket stream (BNB/USDT) rendering on the chart.
-4. The custom URL input field with the 'Connect Stream' validation button.
-5. Terminal output showing the passing Jest test suite, validating the auto-healing network hook and WebSocket reliability.
+1. The live dashboard view rendering Bitcoin (BTC/USDT) real-time data on the frontend.
+2. The WordPress editor view showing the custom URL input field and 'Connect Stream' validation.
+3. Block settings sidebar showing the refresh rate and performance throttling options.
+4. Example of a custom WebSocket stream (BNB/USDT) rendering on the chart.
+
+== External Services ==
+
+This plugin connects to a third-party service to fetch real-time market data.
+
+= Binance WebSocket API (stream.binance.com) =
+
+* **What it is and what it's used for:** A public, high-frequency data stream used for tracking real-time cryptocurrency price.
+* **When the connection occurs:** A secure WebSocket is opened only when a visitor views a page where the block is actively displayed.
+* **What data is exchanged:** No user data, IP addresses, or site credentials are ever transmitted. The connection is strictly **read-only**.
+* **Terms & Privacy:** This service is provided by Binance. No API key or account registration is required to access this public data stream.
+
+== Privacy ==
+
+**UV Realtime Crypto Dashboard** is designed with a "Privacy First" architecture.
+
+* **No Telemetry:** We do not track usage, site URLs, or admin activity.
+* **No Cookies:** This plugin does not set any cookies for visitors or admins.
+* **Zero Server-Side Logging:** Because the WebSocket connection happens in the user's browser, your WordPress server never sees or logs the data traffic.
 
 == Changelog ==
 
 = 1.0.0 =
-* Initial enterprise-grade release.
-* Refactored architecture to strict TypeScript standards.
-* Added CPU performance throttling and network auto-healing.
+* **Initial Release:** High-performance crypto visualization block.
+* **Live WebSocket Integration:** Direct, zero-server-load connection to Binance market data.
+* **Gutenberg Native:** Built specifically for the Block Editor with full Inspector Controls support.
+* **Developer Extensibility:** Includes 4 distinct filters (2 PHP, 2 JS) for overriding default streams, refresh rates, and extending UI dropdown options.
+* **Performance Engineering:** Features automatic network drop detection, "zombie" connection killing, and CPU-friendly repaint throttling.
+* **Reliability:** Built-in auto-healing hooks to restore connections after system sleep or network changes.
+* **Accessibility Ready:** WCAG 2.2 compliant with ARIA Live Regions for real-time price updates and screen-reader support.
+* **Modern UI:** Variable-driven SCSS architecture with status indicators and CSS-based pulse animations.
+* **Translation Ready:** Fully internationalized with a shipped `.pot` template.

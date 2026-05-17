@@ -19,7 +19,7 @@
 	word-wrap: normal !important;
 }
 
- .realtime-dashboard-architect-wrapper {
+ .uv-realtime-crypto-dashboard-wrapper {
 	/* --- Theming Variables --- */
 	--rd-bg-color: #ffffff;
 	--rd-border-color: #e2e8f0;
@@ -41,6 +41,8 @@
 	--rd-badge-connecting-text: #475569;
 	--rd-badge-error-bg: #fef2f2;
 	--rd-badge-error-text: #991b1b;
+	--rd-badge-offline-bg: #f1f5f9;
+	--rd-badge-offline-text: #475569;
 
 	/* --- Root Block Styles --- */
 	background: var(--rd-bg-color);
@@ -117,19 +119,45 @@
 		border-radius: 999px;
 		display: flex;
 		align-items: center;
-		gap: 6px;
+		gap: 8px;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: currentColor; // Magic: Matches the text color automatically
+			flex-shrink: 0;
+		}
 		
 		&.status-connected { 
 			background: var(--rd-badge-connected-bg); 
 			color: var(--rd-badge-connected-text); 
+
+			&::before {
+				animation: uv-pulse 2s infinite;
+			}
 		}
 		&.status-connecting { 
 			background: var(--rd-badge-connecting-bg); 
 			color: var(--rd-badge-connecting-text); 
+
+			&::before {
+				display: none;
+			}
 		}
 		&.status-error { 
 			background: var(--rd-badge-error-bg); 
 			color: var(--rd-badge-error-text); 
+		}
+		&.status-disconnected {
+			background: var(--rd-badge-offline-bg);
+			color: var(--rd-badge-offline-text);
+
+			&::before {
+				opacity: 0.5;
+			}
 		}
 	}
 
@@ -147,4 +175,47 @@
 		color: var(--rd-badge-error-text);
 		border-radius: 4px;
 	}
+
+	/* --- Editor Sidebar & Dashboard Layout Extensions --- */
+    .uv-crypto-custom-url-wrapper {
+        padding: 12px;
+        background: var(--rd-badge-connecting-bg);
+        border-radius: 8px;
+        border: 1px solid var(--rd-border-color);
+        margin-bottom: 16px;
+
+        .uv-crypto-connect-button {
+            margin-top: 12px;
+            width: 100%;
+            justify-content: center;
+            /* Note: WordPress .is-primary button styles will handle the rest */
+        }
+    }
+
+    .uv-crypto-spinner-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .chart-container {
+        height: 320px;
+        width: 100%;
+        margin-top: 24px; 
+    }
+}
+
+@keyframes uv-pulse {
+    0% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
+    50% { 
+        opacity: 0.5; 
+        transform: scale(1.2);
+    }
+    100% { 
+        opacity: 1; 
+        transform: scale(1); 
+    }
 }

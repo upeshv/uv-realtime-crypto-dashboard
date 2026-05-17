@@ -2,7 +2,7 @@
 /**
  * Frontend render template for the realtime dashboard block.
  *
- * @package RealtimeDashboard
+ * @package UvRealtimeCryptoDashboard
  */
 
 // Exit if accessed directly to prevent unauthorized script execution.
@@ -16,14 +16,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * We access the attributes array directly to avoid creating temporary variables, 
  * ensuring a clean scan and strictly maintaining global variable scope integrity.
  */
-$react_realtime_performance_dashboard_wrapper_attributes = get_block_wrapper_attributes(
+
+$uv_realtime_crypto_dashboard_default_stream = apply_filters( 'uv_realtime_crypto_dashboard_default_stream', 'wss://stream.binance.com:9443/ws/btcusdt@trade' );
+$uv_realtime_crypto_dashboard_default_refresh = apply_filters( 'uv_realtime_crypto_dashboard_default_refresh', 1000 );
+
+$uv_realtime_crypto_dashboard_wrapper_attributes = get_block_wrapper_attributes(
 	[
-		'class'             => 'realtime-dashboard-frontend-root',
-		'data-stream-url'   => esc_url( $attributes['dataStreamUrl'] ?? 'wss://stream.binance.com:9443/ws/btcusdt@trade', [ 'ws', 'wss' ] ),
-		'data-title'        => esc_attr( $attributes['chartTitle'] ?? 'Live Market Performance' ),
-		'data-refresh-rate' => absint( $attributes['refreshRateMs'] ?? 1000 ),
+		'class'             => 'uv-realtime-crypto-dashboard-frontend-root',
+		'data-stream-url'   => esc_url( $attributes['dataStreamUrl'] ?? $uv_realtime_crypto_dashboard_default_stream, [ 'ws', 'wss' ] ),
+		'data-title'        => esc_attr( $attributes['chartTitle'] ?? 'Live Crypto Market' ),
+		'data-refresh-rate' => absint( $attributes['refreshRateMs'] ?? $uv_realtime_crypto_dashboard_default_refresh ),
 	]
 );
 
 ?>
-<div <?php echo $react_realtime_performance_dashboard_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>></div>
+<div <?php echo $uv_realtime_crypto_dashboard_wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>></div>
