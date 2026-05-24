@@ -5,7 +5,7 @@
  * Description:       A high-performance, real-time cryptocurrency data visualization block bridging WordPress and WebSockets.
  * Version:           1.0.0
  * Requires at least: 6.2
- * Tested up to:      6.9
+ * Tested up to:      7.0
  * Requires PHP:      7.4
  * Author:            Upesh Vishwakarma
  * License:           GPL-2.0-or-later
