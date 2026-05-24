@@ -176,33 +176,33 @@
 		border-radius: 4px;
 	}
 
-	/* --- Editor Sidebar & Dashboard Layout Extensions --- */
-    .uv-crypto-custom-url-wrapper {
-        padding: 12px;
-        background: var(--rd-badge-connecting-bg);
-        border-radius: 8px;
-        border: 1px solid var(--rd-border-color);
-        margin-bottom: 16px;
-
-        .uv-crypto-connect-button {
-            margin-top: 12px;
-            width: 100%;
-            justify-content: center;
-            /* Note: WordPress .is-primary button styles will handle the rest */
-        }
-    }
-
-    .uv-crypto-spinner-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-    }
-
     .chart-container {
         height: 320px;
         width: 100%;
         margin-top: 24px; 
     }
+}
+
+/* --- Editor Sidebar & Dashboard Layout Extensions --- */
+.uv-crypto-custom-url-wrapper {
+	padding: 12px;
+	background: var(--rd-badge-connecting-bg);
+	border-radius: 8px;
+	border: 1px solid var(--rd-border-color);
+	margin-bottom: 16px;
+
+	.uv-crypto-connect-button {
+		margin-top: 12px;
+		width: 100%;
+		justify-content: center;
+		/* Note: WordPress .is-primary button styles will handle the rest */
+	}
+}
+
+.uv-crypto-spinner-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 4px;
 }
 
 @keyframes uv-pulse {
